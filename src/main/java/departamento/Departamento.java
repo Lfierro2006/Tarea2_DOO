@@ -22,5 +22,10 @@ public class Departamento {
     public void addEmpleado(Empleado empleado){
         trabajadores.add(empleado);
     }
+    public ArrayList<Empleado> getEmpleados(){return trabajadores;}
 
+    @Override
+    public String toString(){
+        return "Departamento: "+this.getNombre()+" "+this.obtenerCantidadEmpleados();
+    }
 }
