@@ -15,11 +15,9 @@ abstract class Persona implements Invitable{
     public String getNombre() {
         return nombre;
     }
-
     public String getApellidos() {
         return apellidos;
     }
-
     public String getCorreo() {
         return correo;
     }
