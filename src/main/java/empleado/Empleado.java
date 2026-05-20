@@ -4,16 +4,14 @@ import departamento.Departamento;
 
 public class Empleado extends Persona {
     private String id;
-
-
-    public Empleado(String nombre, String apellidos, String correo, String id){
+    private Departamento departamento;
+    public Empleado(String nombre, String apellidos, String correo, String id,Departamento departamento){
         super(nombre, apellidos, correo);
         this.id=id;
-
+        this.departamento=departamento;
     }
-
+    public Departamento getDepartamento(){return departamento;}
     public String getId(){return id;}
-
 
     @Override
     public String toString(){
