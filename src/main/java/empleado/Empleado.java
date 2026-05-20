@@ -2,23 +2,18 @@ package empleado;
 
 import departamento.Departamento;
 
-public class Empleado {
+public class Empleado extends Persona {
     private String id;
-    private String apellidos;
-    private String nombre;
-    private String correo;
 
-    public Empleado(String id, String apellidos, String nombre, String correo){
+
+    public Empleado(String nombre, String apellidos, String correo, String id){
+        super(nombre, apellidos, correo);
         this.id=id;
-        this.apellidos=apellidos;
-        this.nombre=nombre;
-        this.correo=correo;
+
     }
 
-    public String getNombre() {return nombre;}
-    public String getApellidos(){return apellidos;}
     public String getId(){return id;}
-    public String getCorreo(){return correo;}
+
 
     @Override
     public String toString(){
