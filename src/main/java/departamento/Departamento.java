@@ -11,7 +11,6 @@ public class Departamento {
         this.nombre=nombre;
         trabajadores=new ArrayList<>();
     }
-
     public int obtenerCantidadEmpleados(){
         return trabajadores.size();
     }
