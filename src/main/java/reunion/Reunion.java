@@ -16,17 +16,25 @@ public abstract class Reunion {
         MARKETING,
         OTRO
     }
-    public Reunion(Empleado organizador,Date fecha,Duration duracionPrevista/*, List invitacion*/){
+    public Reunion(Empleado organizador,Date fecha,Instant horaPrevista,Duration duracionPrevista,tipoReunion tipoReunion/*, List invitacion*/){
         this.fecha=fecha;
+        this.horaPrevista=horaPrevista;
         this.duracionPrevista=duracionPrevista;
     }
+
     public List obtenerAsistencias(){}
     public List obtenerAusencias(){}
     public List obtenerRetraos(){}
     public int obtenerTotalAsistencia(){}
     public float obtenerPorcentajeAsistencia(){}
-    public float calcularTiempoReal(){}
-    public void iniciar(){}
-    public void finalizar(){}
-
+    public float calcularTiempoReal(){
+        return Duration.between(horaInicio,horaFinal).toNanos()/3_600_000_000_000.0f;
+    }
+    public void iniciar(){
+        this.horaInicio=Instant.now();
+        this.horaFinal=null;
+    }
+    public void finalizar(){
+        this.horaFinal=Instant.now();
+    }
 }
