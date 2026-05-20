@@ -10,6 +10,7 @@ public abstract class Reunion {
     private Duration duracionPrevista;
     private Instant horaInicio;
     private Instant horaFinal;
+    private String ubicacion;
     enum tipoReunion{
         TECNICA,
         MARKETING,

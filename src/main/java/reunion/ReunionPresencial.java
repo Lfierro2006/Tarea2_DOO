@@ -8,4 +8,8 @@ public class ReunionPresencial extends Reunion {
         this.sala=sala;
         super(organizador);
     }
+    public String getSala() {
+        return ubicacion;
+    }
+
 }
