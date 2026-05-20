@@ -1,6 +1,8 @@
 package empleado;
 
-abstract class Persona {
+import invitable.Invitable;
+
+abstract class Persona implements Invitable{
     private String apellidos;
     private String nombre;
     private String correo;
@@ -21,6 +23,8 @@ abstract class Persona {
     public String getCorreo() {
         return correo;
     }
+
+    @Override
     public String toString(){
         return "Nombre completo: "+this.getNombre()+" "+this.getApellidos()+ "\n" + "Correo: "+this.getCorreo();
     }
