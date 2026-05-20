@@ -1,7 +1,7 @@
 package invitable;
 
-public interface Invitable {
-    public invitar(){
+import empleado.Empleado;
 
-    }
+public interface Invitable {
+
 }
