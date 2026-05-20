@@ -9,6 +9,7 @@ public class Departamento {
 
     public Departamento(String nombre){
         this.nombre=nombre;
+        trabajadores=new ArrayList<>();
     }
 
     public int obtenerCantidadEmpleados(){
