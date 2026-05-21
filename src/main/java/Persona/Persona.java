@@ -2,7 +2,7 @@ package Persona;
 
 import invitable.Invitable;
 
-public class Persona implements Invitable{
+public abstract class Persona implements Invitable{
     private final String apellidos;
     private final String nombre;
     private final String correo;
