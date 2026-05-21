@@ -8,6 +8,7 @@ import java.util.List;
 import asistencia.Asistencia;
 import asistencia.Retraso;
 import Persona.Empleado;
+import informe.Informe;
 import invitable.Invitable;
 import invitacion.Invitacion;
 import nota.Nota;
@@ -104,6 +105,9 @@ public abstract class Reunion {
     }
     public void finalizar(){
         this.horaFinal=Instant.now();
+    }
+    public void generarInforme(){
+        new Informe(this).generarInforme();
     }
 
     public Empleado getOrganizador(){
