@@ -69,7 +69,6 @@ public abstract class Reunion {
     }
     public void iniciar(){
         this.horaInicio=Instant.now();
-        this.horaFinal=null;
     }
     public void finalizar(){
         this.horaFinal=Instant.now();
