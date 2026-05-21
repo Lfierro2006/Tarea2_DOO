@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import empleado.Empleado;
+import invitacion.Invitacion;
+
 public abstract class Reunion {
     private Date fecha;
     private Instant horaPrevista;
@@ -22,7 +24,9 @@ public abstract class Reunion {
         MARKETING,
         OTRO
     }
-    public Reunion(Empleado organizador,Date fecha,Instant horaPrevista,Duration duracionPrevista,tipoReunion tipoReunion/*, List invitacion*/){
+
+    public Reunion(Empleado organizador,Date fecha,Instant horaPrevista,Duration duracionPrevista,tipoReunion tipo, List<Invitacion> invitaciones){
+        this.organizador=organizador;
         this.fecha=fecha;
         this.horaPrevista=horaPrevista;
         this.duracionPrevista=duracionPrevista;
