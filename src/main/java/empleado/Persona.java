@@ -18,13 +18,16 @@ abstract class Persona implements Invitable{
     public String getApellidos() {
         return apellidos;
     }
+    public String getNombreCompleto(){
+        return nombre+" "+apellidos;
+    }
     public String getCorreo() {
         return correo;
     }
 
     @Override
     public String toString(){
-        return "Nombre completo: "+this.getNombre()+" "+this.getApellidos()+ "\n" + "Correo: "+this.getCorreo();
+        return "Nombre completo: "+this.getNombreCompleto()+"\n" + "Correo: "+this.getCorreo();
     }
 }
 
