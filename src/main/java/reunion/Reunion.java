@@ -1,4 +1,5 @@
 package reunion;
+
 import java.time.*;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,13 @@ public abstract class Reunion {
     private Duration duracionPrevista;
     private Instant horaInicio;
     private Instant horaFinal;
-    enum tipoReunion{
+    private Empleado organizador;
+    private tipoReunion tipo;
+    private final List<Invitacion> invitaciones;
+    private final List<Asistencia> asistencias;
+    private List<Nota> notas;
+
+    public enum tipoReunion{
         TECNICA,
         MARKETING,
         OTRO
