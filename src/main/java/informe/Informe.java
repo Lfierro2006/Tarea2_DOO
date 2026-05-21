@@ -13,7 +13,7 @@ public class Informe {
     private String nombreInforme;
     public Informe(Reunion reunion){
         this.reunion=reunion;
-        this.nombreInforme="Reunion-"+reunion.getOrganizador().getNombreCompleto().replace(" ","_")+"-"+reunion.getFecha()+".txt";
+        this.nombreInforme="Reunion-"+reunion.getOrganizador().getNombreCompleto().replace(" ","_")+"-"+reunion.getFecha().toString().replace(" ","_")+".txt";
     }
     public void generarInforme(){
         try {
