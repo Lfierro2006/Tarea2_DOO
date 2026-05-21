@@ -16,5 +16,8 @@ public class ReunionPresencial extends Reunion {
     public String getSala() {
         return sala;
     }
-
+    @Override
+    public String toString(){
+        return super.toString()+"| Sala: "+this.getSala();
+    }
 }
