@@ -115,10 +115,22 @@ public abstract class Reunion {
     public Instant getHoraPrevista(){
         return horaPrevista;
     }
+    public Instant getHoraInicio(){
+        return horaInicio;
+    }
+    public Instant getHoraFinal(){
+        return horaFinal;
+    }
     public Duration getDuracionPrevista(){
         return duracionPrevista;
     }
     public tipoReunion getTipo(){
         return tipo;
+    }
+    public List<Nota> getNotas(){
+        return notas;
+    }
+    public List<Invitacion> getInvitaciones(){
+        return invitaciones;
     }
 }
