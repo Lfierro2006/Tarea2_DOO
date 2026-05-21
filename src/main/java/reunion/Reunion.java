@@ -10,6 +10,7 @@ import asistencia.Retraso;
 import empleado.Empleado;
 import invitable.Invitable;
 import invitacion.Invitacion;
+import nota.Nota;
 
 public abstract class Reunion {
     private Date fecha;
@@ -42,14 +43,14 @@ public abstract class Reunion {
         this.horaFinal=null;
     }
     public void registrarAsistencia(Invitable invitado,Instant horaLlegada){
-        Instant horaInvitación=null;
+        Instant horaInvitacion=null;
         for (Invitacion invitacion:invitaciones){
             if(invitacion.getInvitado().equals(invitado)){
-                horaInvitación=invitacion.getHora();
+                horaInvitacion=invitacion.getHora();
                 break;
             }
         }
-        if(horaLlegada.isAfter(horaInvitación)){
+        if(horaLlegada.isAfter(horaInvitacion)){
             asistencias.add(new Retraso(invitado,horaLlegada));
         }else{
             asistencias.add(new Asistencia(invitado,horaLlegada));
@@ -60,11 +61,6 @@ public abstract class Reunion {
         notas.add(new Nota(nota));
     }
 
-    public List obtenerAsistencias(){}
-    public List obtenerAusencias(){}
-    public List obtenerRetraos(){}
-    public int obtenerTotalAsistencia(){}
-    public float obtenerPorcentajeAsistencia(){}
     public List<Asistencia> obtenerAsistencias(){
         return asistencias;
     }
