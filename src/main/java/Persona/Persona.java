@@ -31,6 +31,14 @@ abstract class Persona implements Invitable{
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Persona)) return false;
+        Persona other = (Persona) obj;
+        return this.correo.equals(other.correo);
+    }
+
+    @Override
     public String toString(){
         return "Nombre completo: "+this.getNombreCompleto()+"\n" + "Correo: "+this.getCorreo();
     }
