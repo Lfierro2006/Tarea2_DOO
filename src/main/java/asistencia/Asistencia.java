@@ -1,5 +1,9 @@
 package asistencia;
 
+import invitable.Invitable;
+
+import java.time.Instant;
+
 public class Asistencia {
     private final Invitable invitado;
     private final Instant horaLlegada;
@@ -13,5 +17,9 @@ public class Asistencia {
     }
     public Invitable getInvitado(){
         return invitado;
+    }
+    @Override
+    public String toString(){
+        return invitado.toString()+" ha asistido y llegó a las "+this.getHoraLlegada();
     }
 }
