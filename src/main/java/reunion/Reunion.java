@@ -1,6 +1,7 @@
 package reunion;
 
 import java.time.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +31,12 @@ public abstract class Reunion {
         this.fecha=fecha;
         this.horaPrevista=horaPrevista;
         this.duracionPrevista=duracionPrevista;
+        this.tipo=tipo;
+        this.notas=new ArrayList<>();
+        this.invitaciones=new ArrayList<>(invitaciones);
+        this.asistencias=new ArrayList<>();
+        this.horaInicio=null;
+        this.horaFinal=null;
     }
 
     public List obtenerAsistencias(){}
