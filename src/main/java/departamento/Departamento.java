@@ -1,11 +1,12 @@
 package departamento;
 import empleado.Empleado;
+import invitable.Invitable;
 
 import java.util.ArrayList;
 
-public class Departamento {
+public class Departamento implements Invitable {
     private final String nombre;
-    private ArrayList<Empleado> trabajadores;
+    private final ArrayList<Empleado> trabajadores;
 
     public Departamento(String nombre){
         this.nombre=nombre;
@@ -23,6 +24,13 @@ public class Departamento {
         trabajadores.add(empleado);
     }
     public ArrayList<Empleado> getEmpleados(){return trabajadores;}
+
+    @Override
+    public void invitar(){
+        for(Empleado empleado : trabajadores){
+            empleado.invitar();
+        }
+    }
 
     @Override
     public String toString(){
