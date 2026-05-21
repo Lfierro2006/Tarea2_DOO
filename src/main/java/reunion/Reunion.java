@@ -133,4 +133,9 @@ public abstract class Reunion {
     public List<Invitacion> getInvitaciones(){
         return invitaciones;
     }
+
+    @Override
+    public String toString(){
+        return "Datos Reunion | Fecha: "+this.getFecha()+" | Hora:"+this.getHoraPrevista()+" | Tipo: "+this.getTipo()+" | Organizador: "+this.getOrganizador().getNombreCompleto()+" ("+this.getOrganizador().getCorreo()+")";
+    }
 }
