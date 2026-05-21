@@ -1,6 +1,6 @@
 package reunion;
 
-import empleado.Empleado;
+import Persona.Empleado;
 import invitacion.Invitacion;
 import java.time.Duration;
 import java.time.Instant;

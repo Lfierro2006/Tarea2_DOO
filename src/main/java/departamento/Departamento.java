@@ -1,5 +1,5 @@
 package departamento;
-import empleado.Empleado;
+import Persona.Empleado;
 import invitable.Invitable;
 
 import java.util.ArrayList;

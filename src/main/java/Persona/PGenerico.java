@@ -1,4 +1,4 @@
-package empleado;
+package Persona;
 
 public class PGenerico extends Persona{
     public PGenerico(String nombre, String apellidos, String correo){

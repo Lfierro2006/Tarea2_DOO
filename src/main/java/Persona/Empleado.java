@@ -1,4 +1,4 @@
-package empleado;
+package Persona;
 
 import departamento.Departamento;
 

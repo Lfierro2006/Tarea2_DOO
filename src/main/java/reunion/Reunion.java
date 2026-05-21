@@ -7,7 +7,7 @@ import java.util.List;
 
 import asistencia.Asistencia;
 import asistencia.Retraso;
-import empleado.Empleado;
+import Persona.Empleado;
 import invitable.Invitable;
 import invitacion.Invitacion;
 import nota.Nota;
