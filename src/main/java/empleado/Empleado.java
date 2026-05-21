@@ -3,8 +3,8 @@ package empleado;
 import departamento.Departamento;
 
 public class Empleado extends Persona {
-    private String id;
-    private Departamento departamento;
+    private final String id;
+    private final Departamento departamento;
     public Empleado(String nombre, String apellidos, String correo, String id,Departamento departamento){
         super(nombre, apellidos, correo);
         this.id=id;
