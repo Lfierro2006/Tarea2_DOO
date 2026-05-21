@@ -3,9 +3,9 @@ package empleado;
 import invitable.Invitable;
 
 abstract class Persona implements Invitable{
-    private String apellidos;
-    private String nombre;
-    private String correo;
+    private final String apellidos;
+    private final String nombre;
+    private final String correo;
     public Persona(String nombre, String apellidos, String correo){
         this.nombre= nombre;
         this.apellidos= apellidos;
