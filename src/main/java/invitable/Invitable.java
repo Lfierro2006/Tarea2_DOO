@@ -1,7 +1,5 @@
 package invitable;
 
-import empleado.Empleado;
-
 public interface Invitable {
-
+    public void invitar();
 }
