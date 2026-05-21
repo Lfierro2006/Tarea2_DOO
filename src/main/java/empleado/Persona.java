@@ -35,4 +35,3 @@ abstract class Persona implements Invitable{
         return "Nombre completo: "+this.getNombreCompleto()+"\n" + "Correo: "+this.getCorreo();
     }
 }
-
