@@ -74,6 +74,21 @@ public abstract class Reunion {
                     break;
                 }
             }
+            if(!asistio){
+                ausencias.add(invitado.getInvitado());
+            }
+        }
+        return ausencias;
+    }
+    public List<Retraso> obtenerRetrasos(){
+        List<Retraso>retrasos=new ArrayList<>();
+        for(Asistencia asistente:asistencias){
+            if(asistente.getClass()==Retraso.class){
+                retrasos.add((Retraso) asistente);
+            }
+        }
+        return retrasos;
+    }
     public float calcularTiempoReal(){
         return Duration.between(horaInicio,horaFinal).toNanos()/3_600_000_000_000.0f;
     }
