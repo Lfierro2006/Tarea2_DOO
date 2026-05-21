@@ -26,6 +26,11 @@ abstract class Persona implements Invitable{
     }
 
     @Override
+    public void invitar(){
+        System.out.println(getNombre()+" "+getApellidos()+" ("+getCorreo()+") ha sido invitado");
+    }
+
+    @Override
     public String toString(){
         return "Nombre completo: "+this.getNombreCompleto()+"\n" + "Correo: "+this.getCorreo();
     }
