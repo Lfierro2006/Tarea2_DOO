@@ -65,6 +65,9 @@ public abstract class Reunion {
     public List obtenerRetraos(){}
     public int obtenerTotalAsistencia(){}
     public float obtenerPorcentajeAsistencia(){}
+    public List<Asistencia> obtenerAsistencias(){
+        return asistencias;
+    }
     public float calcularTiempoReal(){
         return Duration.between(horaInicio,horaFinal).toNanos()/3_600_000_000_000.0f;
     }
