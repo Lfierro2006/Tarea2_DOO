@@ -17,4 +17,8 @@ public class ReunionVirtual extends Reunion {
     public String getLink(){
         return enlace;
     }
+    @Override
+    public String toString(){
+        return super.toString()+" | Enlace Reunion: "+this.getLink();
+    }
 }
