@@ -105,4 +105,20 @@ public abstract class Reunion {
     public void finalizar(){
         this.horaFinal=Instant.now();
     }
+
+    public Empleado getOrganizador(){
+        return organizador;
+    }
+    public Date getFecha(){
+        return fecha;
+    }
+    public Instant getHoraPrevista(){
+        return horaPrevista;
+    }
+    public Duration getDuracionPrevista(){
+        return duracionPrevista;
+    }
+    public tipoReunion getTipo(){
+        return tipo;
+    }
 }
