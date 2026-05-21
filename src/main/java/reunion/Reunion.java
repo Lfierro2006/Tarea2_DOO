@@ -64,6 +64,16 @@ public abstract class Reunion {
     public List<Asistencia> obtenerAsistencias(){
         return asistencias;
     }
+    public List<Invitable> obtenerAusencias(){
+        List<Invitable> ausencias= new ArrayList<>();
+        for (Invitacion invitado:invitaciones){
+            boolean asistio=false;
+            for(Asistencia asistente:asistencias){
+                if(asistente.getInvitado().equals(invitado.getInvitado())){
+                    asistio=true;
+                    break;
+                }
+            }
     public float calcularTiempoReal(){
         return Duration.between(horaInicio,horaFinal).toNanos()/3_600_000_000_000.0f;
     }
