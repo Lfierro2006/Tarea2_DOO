@@ -89,6 +89,13 @@ public abstract class Reunion {
         }
         return retrasos;
     }
+    public int obtenerTotalAsistencia(){
+        return asistencias.size();
+    }
+    public float obtenerPorcentajeAsistencia(){
+        return (float) asistencias.size()/invitaciones.size()*100;
+    }
+
     public float calcularTiempoReal(){
         return Duration.between(horaInicio,horaFinal).toNanos()/3_600_000_000_000.0f;
     }
