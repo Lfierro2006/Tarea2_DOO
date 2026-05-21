@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import asistencia.Asistencia;
+import asistencia.Retraso;
 import empleado.Empleado;
+import invitable.Invitable;
 import invitacion.Invitacion;
 
 public abstract class Reunion {
@@ -37,6 +40,24 @@ public abstract class Reunion {
         this.asistencias=new ArrayList<>();
         this.horaInicio=null;
         this.horaFinal=null;
+    }
+    public void registrarAsistencia(Invitable invitado,Instant horaLlegada){
+        Instant horaInvitación=null;
+        for (Invitacion invitacion:invitaciones){
+            if(invitacion.getInvitado().equals(invitado)){
+                horaInvitación=invitacion.getHora();
+                break;
+            }
+        }
+        if(horaLlegada.isAfter(horaInvitación)){
+            asistencias.add(new Retraso(invitado,horaLlegada));
+        }else{
+            asistencias.add(new Asistencia(invitado,horaLlegada));
+        }
+    }
+
+    public void nuevaNota(String nota){
+        notas.add(new Nota(nota));
     }
 
     public List obtenerAsistencias(){}
