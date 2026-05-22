@@ -1,7 +1,7 @@
 package reunion;
 
+import Persona.Empleado;
 import departamento.Departamento;
-import empleado.Empleado;
 import invitacion.Invitacion;
 import org.junit.jupiter.api.Test;
 

@@ -1,10 +1,11 @@
 package reunion;
 
 import departamento.Departamento;
-import empleado.Empleado;
-import empleado.PGenerico;
+import Persona.Empleado;
+import Persona.PGenerico;
 import invitacion.Invitacion;
 import org.junit.jupiter.api.Test;
+import excepciones.*;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -97,9 +98,119 @@ public class ReunionTest {
                 Duration.ofHours(1), Reunion.tipoReunion.TECNICA, new ArrayList<>());
 
         reunion.nuevaNota("Recordar la reunion dentro de un mes.");
-        reunion.nuevaNota("Fijar fecha para la próxima semana.");
+        reunion.nuevaNota("Fijar fecha para la proxima semana.");
 
         assertEquals(2, reunion.getNotas().size(), "La lista de notas debe contener 2 elementos.");
         assertEquals("Fijar fecha para la proxima semana.", reunion.getNotas().get(1).getNota(), "El contenido de la nota agregada debe coincidir.");
+    }
+    @Test
+    public void testFinalizarSinIniciarLanzaExcepcion() {
+        Departamento depto = new Departamento("Gerencia");
+        Empleado organizador = new Empleado("Admin", "Jefe", "admin@udec.cl", "111", depto);
+        Reunion reunion = new ReunionPrueba(organizador, new Date(), Instant.now(),
+                Duration.ofHours(1), Reunion.tipoReunion.OTRO, new ArrayList<>());
+
+        Exception excepcionCapturada = assertThrows(ReunionEstadoException.class, () -> {
+            reunion.finalizar();
+        });
+
+        assertEquals("Error: No se puede finalizar una reunion que no ha sido iniciada", excepcionCapturada.getMessage());
+    }
+
+    @Test
+    public void testCalcularTiempoRealSinFinalizarLanzaExcepcion() {
+        Departamento depto = new Departamento("Gerencia");
+        Empleado organizador = new Empleado("Admin", "Jefe", "admin@udec.cl", "111", depto);
+        Reunion reunion = new ReunionPrueba(organizador, new Date(), Instant.now(),
+                Duration.ofHours(1), Reunion.tipoReunion.OTRO, new ArrayList<>());
+
+        reunion.iniciar();
+
+        Exception excepcionCapturada = assertThrows(ReunionEstadoException.class, () -> {
+            reunion.calcularTiempoReal();
+        });
+
+        assertEquals("Error: La reunion debe estar iniciada y finalizada para calcular el tiempo real", excepcionCapturada.getMessage());
+    }
+    @Test
+    public void testRegistrarAsistenteNoInvitadoLanzaExcepcion() {
+        Departamento depto = new Departamento("TI");
+        Empleado organizador = new Empleado("Admin", "Jefe", "admin@udec.cl", "111", depto);
+
+        PGenerico invitadoOficial = new PGenerico("Juan", "Pérez", "juan@udec.cl");
+        Invitacion inv = new Invitacion(invitadoOficial, Instant.now());
+        List<Invitacion> invitaciones = Arrays.asList(inv);
+
+        Reunion reunion = new ReunionPrueba(organizador, new Date(), Instant.now(),
+                Duration.ofHours(1), Reunion.tipoReunion.TECNICA, invitaciones);
+
+        PGenerico intruso = new PGenerico("Pedro", "Maldonado", "pedro@udec.cl");
+
+        Exception excepcionCapturada = assertThrows(AsistenteNoInvitadoException.class, () -> {
+            reunion.registrarAsistencia(intruso, Instant.now());
+        });
+
+        assertEquals("Error: No se puede registrar la asistencia de alguien que no fue invitado.", excepcionCapturada.getMessage());
+    }
+    @Test
+    public void testAsistenciaDuplicadaLanzaExcepcion() {
+        Departamento depto = new Departamento("TI");
+        Empleado organizador = new Empleado("Admin", "Jefe", "admin@udec.cl", "111", depto);
+
+        PGenerico invitado = new PGenerico("Ana", "Gómez", "ana@udec.cl");
+        Invitacion inv = new Invitacion(invitado, Instant.now());
+        List<Invitacion> invitaciones = Arrays.asList(inv);
+
+        Reunion reunion = new ReunionPrueba(organizador, new Date(), Instant.now(),
+                Duration.ofHours(1), Reunion.tipoReunion.TECNICA, invitaciones);
+
+        reunion.registrarAsistencia(invitado, Instant.now());
+
+        Exception excepcionCapturada = assertThrows(AsistenciaDuplicadaException.class, () -> {
+            reunion.registrarAsistencia(invitado, Instant.now());
+        });
+
+        assertEquals("Error: El invitado ya ha registrado su asistencia previamente.", excepcionCapturada.getMessage());
+    }
+    @Test
+    public void testObtenerPorcentajeSinInvitadosLanzaExcepcion() {
+        Departamento depto = new Departamento("Marketing");
+        Empleado organizador = new Empleado("Admin", "Jefe", "admin@udec.cl", "111", depto);
+
+        List<Invitacion> invitacionesVacias = new ArrayList<>();
+
+        Reunion reunion = new ReunionPrueba(organizador, new Date(), Instant.now(),
+                Duration.ofHours(1), Reunion.tipoReunion.MARKETING, invitacionesVacias);
+
+        Exception excepcionCapturada = assertThrows(ReunionVaciaException.class, () -> {
+            reunion.obtenerPorcentajeAsistencia();
+        });
+
+        assertEquals("Error: No se puede calcular el porcentaje de asistencia de una reunión sin invitados.", excepcionCapturada.getMessage());
+    }
+    @Test
+    public void testCrearReunionConDuracionInvalidaLanzaExcepcion() {
+        Departamento depto = new Departamento("Ventas");
+        Empleado organizador = new Empleado("Admin", "Jefe", "admin@udec.cl", "111", depto);
+        List<Invitacion> invitaciones = new ArrayList<>();
+
+        Duration duracionImposible = Duration.ofMinutes(-30);
+
+        Exception excepcionCapturada = assertThrows(TiempoInvalidoException.class, () -> {
+            new ReunionPrueba(organizador, new Date(), Instant.now(),
+                    duracionImposible, Reunion.tipoReunion.OTRO, invitaciones);
+        });
+
+        assertEquals("Error: La duración prevista de la reunion debe ser mayor a cero.", excepcionCapturada.getMessage());
+    }
+    @Test
+    public void testCrearReunionConDatosFaltantesLanzaExcepcion() {
+
+        Exception excepcionCapturada = assertThrows(DatosIncompletosException.class, () -> {
+            new ReunionPrueba(null, new Date(), Instant.now(),
+                    Duration.ofHours(1), Reunion.tipoReunion.OTRO, new ArrayList<>());
+        });
+
+        assertEquals("Error: Faltan datos obligatorios para agendar la reunión (se detectó un valor nulo).", excepcionCapturada.getMessage());
     }
 }

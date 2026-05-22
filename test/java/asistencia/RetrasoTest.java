@@ -1,6 +1,6 @@
 package asistencia;
 
-import empleado.PGenerico;
+import Persona.PGenerico;
 import org.junit.jupiter.api.Test;
 import java.time.Instant;
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +18,7 @@ public class RetrasoTest {
 
         String resultadoToString = retraso.toString();
 
-        String resultadoEsperado = "Nombre completo: Javier Vidal\nCorreo: javier.vidal@correo.cl asistio pero llegó con retraso a las 2026-05-21T10:15:30Z";
+        String resultadoEsperado = "Nombre completo: Javier Vidal\nCorreo: javier.vidal@correo.cl asistió pero llegó con retraso a las 2026-05-21T10:15:30Z";
 
         assertEquals(resultadoEsperado, resultadoToString,
                 "El metodo toString de Retraso no devuelve el resultado esperado.");

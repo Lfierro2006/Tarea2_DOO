@@ -1,5 +1,6 @@
 package empleado;
 
+import Persona.Empleado;
 import departamento.Departamento;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

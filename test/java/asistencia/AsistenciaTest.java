@@ -1,6 +1,6 @@
 package asistencia;
 
-import empleado.PGenerico;
+import Persona.PGenerico;
 import org.junit.jupiter.api.Test;
 import java.time.Instant;
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +27,7 @@ public class AsistenciaTest {
 
         String resultadoToString = asistencia.toString();
 
-        String resultadoEsperado = "Nombre completo: Carlos Soto\nCorreo: carlos.soto@udec.cl asistio y llego a las 2026-05-21T10:00:00Z";
+        String resultadoEsperado = "Nombre completo: Carlos Soto\nCorreo: carlos.soto@udec.cl ha asistido y llegó a las 2026-05-21T10:00:00Z";
 
         assertEquals(resultadoEsperado, resultadoToString,
                 "El metodo toString de Asistencia no devuelve el resultado esperado");

@@ -1,5 +1,6 @@
 package reunion;
 
+import excepciones.*;
 import java.time.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +33,15 @@ public abstract class Reunion {
     }
 
     public Reunion(Empleado organizador,Date fecha,Instant horaPrevista,Duration duracionPrevista,tipoReunion tipo, List<Invitacion> invitaciones){
+
+        if (organizador == null || fecha == null || horaPrevista == null || duracionPrevista == null || tipo == null || invitaciones == null) {
+            throw new DatosIncompletosException("Error: Faltan datos obligatorios para agendar la reunión (se detectó un valor nulo).");
+        }
+
+        if (duracionPrevista.isZero() || duracionPrevista.isNegative()) {
+            throw new TiempoInvalidoException("Error: La duración prevista de la reunion debe ser mayor a cero.");
+        }
+
         this.organizador=organizador;
         this.fecha=fecha;
         this.horaPrevista=horaPrevista;
@@ -49,6 +59,14 @@ public abstract class Reunion {
             if(invitacion.getInvitado().equals(invitado)){
                 horaInvitacion=invitacion.getHora();
                 break;
+            }
+        }
+        if(horaInvitacion == null){
+            throw new AsistenteNoInvitadoException("Error: No se puede registrar la asistencia de alguien que no fue invitado.");
+        }
+        for (Asistencia asistenciaRegistrada : asistencias) {
+            if (asistenciaRegistrada.getInvitado().equals(invitado)) {
+                throw new AsistenciaDuplicadaException("Error: El invitado ya ha registrado su asistencia previamente.");
             }
         }
         if(horaLlegada.isAfter(horaInvitacion)){
@@ -94,17 +112,31 @@ public abstract class Reunion {
         return asistencias.size();
     }
     public float obtenerPorcentajeAsistencia(){
+        if (invitaciones.isEmpty()) {
+            throw new ReunionVaciaException("Error: No se puede calcular el porcentaje de asistencia de una reunión sin invitados.");
+        }
         return (float) asistencias.size()/invitaciones.size()*100;
     }
 
     public float calcularTiempoReal(){
-        return Duration.between(horaInicio,horaFinal).toNanos()/3_600_000_000_000.0f;
+        if (this.horaInicio == null || this.horaFinal == null) {
+            throw new ReunionEstadoException("Error: La reunion debe estar iniciada y finalizada para calcular el tiempo real");
+        }
+
+        if (this.horaFinal.isBefore(this.horaInicio)) {
+            throw new TiempoInvalidoException("Error: La hora final no puede ser anterior a la hora de inicio.");
+        }
+
+        return Duration.between(horaInicio, horaFinal).toNanos() / 3_600_000_000_000.0f;
     }
     public void iniciar(){
         this.horaInicio=Instant.now();
     }
     public void finalizar(){
-        this.horaFinal=Instant.now();
+        if (this.horaInicio == null) {
+            throw new ReunionEstadoException("Error: No se puede finalizar una reunion que no ha sido iniciada");
+        }
+        this.horaFinal = Instant.now();
     }
     public void generarInforme(){
         new Informe(this).generarInforme();

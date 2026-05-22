@@ -1,7 +1,7 @@
 package reunion;
 
 import departamento.Departamento;
-import empleado.Empleado;
+import Persona.Empleado;
 import invitacion.Invitacion;
 import org.junit.jupiter.api.Test;
 
@@ -45,7 +45,7 @@ public class ReunionVirtualTest {
         String resultadoToString = reunion.toString();
 
         String resultadoEsperado = "Datos Reunion | Fecha: " + fecha + " | Hora:" + horaPrevista +
-                " | Tipo: OTRO | Organizador: Sofía Castro (scastro@udec.cl) | Enlace Reunion: " + enlace;
+                " | Tipo: OTRO | Organizador: Sofia Castro (scastro@udec.cl) | Enlace Reunion: " + enlace;
 
         assertEquals(resultadoEsperado, resultadoToString,
                 "Mtodo toString de ReunionVirtual no devuelve el resultado de texto esperado.");
