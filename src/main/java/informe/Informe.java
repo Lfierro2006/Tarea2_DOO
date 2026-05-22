@@ -7,14 +7,25 @@ import reunion.ReunionVirtual;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-
+/**
+ * Genera un archivo de texto con el reporte detallado de una reunión.
+ */
 public class Informe {
     private Reunion reunion;
     private String nombreInforme;
+    /**
+     * Crea un informe y genera automáticamente el nombre del archivo.
+     *
+     * @param reunion La reunión que se va a documentar.
+     */
     public Informe(Reunion reunion){
         this.reunion=reunion;
         this.nombreInforme="Reunion-"+reunion.getOrganizador().getNombreCompleto().replace(" ","_")+"-"+reunion.getFecha().toString().replace(" ","_")+".txt";
     }
+    /**
+     * Escribe y guarda todos los datos de la reunión en un archivo de texto (.txt).
+     * Incluye información como asistencia, horarios, notas y tipo de reunión.
+     */
     public void generarInforme(){
         try {
             PrintWriter informe=new PrintWriter(nombreInforme);
@@ -36,6 +47,11 @@ public class Informe {
             throw new RuntimeException(e);
         }
     }
+    /**
+     * Devuelve un mensaje con el nombre del archivo del informe.
+     *
+     * @return Cadena descriptiva con el nombre del archivo.
+     */
     @Override
     public String toString(){
         return "El informe se llama: "+this.nombreInforme;
