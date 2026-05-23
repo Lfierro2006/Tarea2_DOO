@@ -5,7 +5,19 @@ import org.junit.jupiter.api.Test;
 import java.time.Instant;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Clase de pruebas unitarias para la clase {@link Invitacion}.
+ * Verifica la inicialización de sus atributos, el formato
+ * de texto devuelto y el comportamiento dinámico al enviar la invitación.
+ */
 public class InvitacionTest {
+
+    /**
+     * Prueba que verifica la correcta asignación de atributos al crear
+     * una instancia de Invitacion. Comprueba que los métodos getter
+     * ({@code getInvitado()} y {@code getHora()}) devuelvan los valores exactos
+     * proporcionados en el constructor.
+     */
 
     @Test
     public void testAsignacionAtributos() {
@@ -18,6 +30,11 @@ public class InvitacionTest {
         assertEquals(hora, invitacion.getHora(), "La hora no coincide con la entregada en el constructor.");
     }
 
+    /**
+     * Prueba que verifica el formato de salida del metodo {@code toString()}.
+     * Asegura que la cadena generada contenga los datos del invitado
+     * y la hora prevista formateada correctamente.
+     */
     @Test
     public void testToStringFormatoCorrecto() {
         PGenerico invitado = new PGenerico("Sofia", "Rojas", "sofia@correo.cl");
@@ -33,6 +50,12 @@ public class InvitacionTest {
                 "Metodo toString de Invitacion no devuelve el resultado esperado");
     }
 
+    /**
+     * Prueba de comportamiento que verifica el metodo {@code enviar()}.
+     * usa una clase simulada que implementa la interfaz
+     * {@code Invitable} para interceptar y confirmar que el metodo
+     * {@code invitar()} del objeto destino es ejecutado correctamente.
+     */
     @Test
     public void testEnviarEjecutaInvitar() {
 

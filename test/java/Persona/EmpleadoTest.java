@@ -1,13 +1,21 @@
-package empleado;
+package Persona;
 
-import Persona.Empleado;
 import departamento.Departamento;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+/**
+ * Clase de pruebas unitarias para la clase {@link Empleado}.
+ * Verifica la  asignación de atributos específicos del empleado,
+ * su relación con el objeto {@link Departamento} y el formato de salida de texto.
+ */
 public class EmpleadoTest {
-
+    /**
+     * Prueba que verifica el formato de salida del metodo {@code toString()}.
+     * Asegura que la cadena generada contenga de forma estructurada
+     * el nombre completo del empleado, su identificador único (ID) y su correo corporativo.
+     */
     @Test
     public void testToStringFormatoCorrecto() {
 
@@ -22,6 +30,11 @@ public class EmpleadoTest {
                 "El metodo toString de Empleado no devuelve el resultado esperado");
     }
 
+    /**
+     * Prueba que verifica la asociación entre un Empleado y su Departamento.
+     * Comprueba que al inyectar un objeto {@code Departamento} a través del constructor,
+     * este se guarde correctamente y pueda ser recuperado mediante el metodo getter respectivo.
+     */
     @Test
     public void testAsignacionDeDepartamento() {
 

@@ -5,7 +5,19 @@ import org.junit.jupiter.api.Test;
 import java.time.Instant;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Clase de pruebas unitarias para la clase {@link Asistencia}.
+ * Verifica el funcionamiento del constructor, los métodos getters
+ * y la representacion en cadena de texto del objeto
+ */
+
 public class AsistenciaTest {
+
+    /**
+     * Prueba que verifica la correcta asignación de atributos al instanciar
+     * un objeto de la clase Asistencia. Comprueba que los metodos getter
+     * devuelvan exactamente los mismos valores pasados al constructor.
+     */
 
     @Test
     public void testAsignacionAtributos() {
@@ -17,7 +29,11 @@ public class AsistenciaTest {
         assertEquals(invitado, asistencia.getInvitado(), "invitado no coincide con el entregado en el constructor.");
         assertEquals(horaLlegada, asistencia.getHoraLlegada(), "Hora de llegada no coincide con la entregada en el constructor.");
     }
-
+    /**
+     * Prueba que verifica el formato de salida del metodo {@code toString()}.
+     * Asegura que la cadena generada contenga correctamente la información
+     * de la persona invitada y la hora exacta de su llegada
+     */
     @Test
     public void testToStringFormatoCorrecto() {
         PGenerico invitado = new PGenerico("Carlos", "Soto", "carlos.soto@udec.cl");

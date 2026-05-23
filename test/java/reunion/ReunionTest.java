@@ -15,15 +15,29 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+/**
+ * Clase principal de pruebas unitarias para la clase abstracta {@link Reunion}.
+ * Evalúa el núcleo lógico del sistema, incluyendo la gestión del tiempo,
+ * el control de asistencia, cálculos estadísticos y un manejo exhaustivo
+ * de excepciones para casos extremos y datos inválidos.
+ */
 
 public class ReunionTest {
-
+    /**
+     * Subclase concreta y estática utilizada exclusivamente para instanciar
+     * y probar la funcionalidad base de la clase abstracta {@link Reunion}.
+     */
     private static class ReunionPrueba extends Reunion {
         public ReunionPrueba(Empleado organizador, Date fecha, Instant horaPrevista, Duration duracionPrevista, tipoReunion tipo, List<Invitacion> invitaciones) {
             super(organizador, fecha, horaPrevista, duracionPrevista, tipo, invitaciones);
         }
     }
-
+    /**
+     * Verifica el ciclo de vida temporal de una reunion
+     * Comprueba que los metodos {@code iniciar()} y {@code finalizar()} capturen
+     * correctamente las marcas de tiempo correspondientes, y que el calculo del
+     * tiempo real devuelva un valor logico (mayor o igual a cero).
+     */
     @Test
     public void testIniciarYFinalizarAsignanTiempos() {
         Departamento depto = new Departamento("Gerencia");
@@ -42,6 +56,11 @@ public class ReunionTest {
         assertTrue(reunion.calcularTiempoReal() >= 0.0f, "El tiempo real calculado debe ser mayor o igual a 0.");
     }
 
+    /**
+     * Verifica la lógica de registro de asistencia y la clasificación automática de retrasos.
+     * Comprueba que el sistema evalúe correctamente la hora de llegada frente a la
+     * hora prevista de la invitación, separando a los puntuales de los atrasados.
+     */
     @Test
     public void testRegistrarAsistenciaClasificaRetrasosCorrectamente() {
         Departamento depto = new Departamento("TI");
@@ -69,6 +88,11 @@ public class ReunionTest {
         assertEquals(invitado2, reunion.obtenerRetrasos().get(0).getInvitado(), "El retraso debe corresponder al invitado que llego tarde.");
     }
 
+    /**
+     * Valida los cálculos estadísticos de la reunión.
+     * Verifica que el metodo {@code obtenerPorcentajeAsistencia()} devuelva la proporción
+     * correcta y que el sistema identifique adecuadamente a los invitados ausentes.
+     */
     @Test
     public void testObtenerPorcentajeYAusencias() {
         Departamento depto = new Departamento("Marketing");
@@ -90,6 +114,10 @@ public class ReunionTest {
         assertEquals(invitado2, reunion.obtenerAusencias().get(0), "La ausencia debe corresponder al invitado que no registró asistencia.");
     }
 
+    /**
+     * Verifica que el metodo {@code nuevaNota()} añada correctamente objetos de
+     * tipo Nota a la lista interna de la reunión.
+     */
     @Test
     public void testNuevaNotaAgregaCorrectamente() {
         Departamento depto = new Departamento("TI");
@@ -103,6 +131,11 @@ public class ReunionTest {
         assertEquals(2, reunion.getNotas().size(), "La lista de notas debe contener 2 elementos.");
         assertEquals("Fijar fecha para la proxima semana.", reunion.getNotas().get(1).getNota(), "El contenido de la nota agregada debe coincidir.");
     }
+
+    /**
+     * Prueba de seguridad: Verifica que se lance la excepcion {@link ReunionEstadoException}
+     * al intentar finalizar una reunión que no ha sido iniciada previamente.
+     */
     @Test
     public void testFinalizarSinIniciarLanzaExcepcion() {
         Departamento depto = new Departamento("Gerencia");
@@ -117,6 +150,10 @@ public class ReunionTest {
         assertEquals("Error: No se puede finalizar una reunion que no ha sido iniciada", excepcionCapturada.getMessage());
     }
 
+    /**
+     * Prueba de seguridad: Verifica que se lance la excepción {@link ReunionEstadoException}
+     * si se intenta calcular el tiempo real de ejecucion antes de que la reunión termine.
+     */
     @Test
     public void testCalcularTiempoRealSinFinalizarLanzaExcepcion() {
         Departamento depto = new Departamento("Gerencia");
@@ -132,6 +169,11 @@ public class ReunionTest {
 
         assertEquals("Error: La reunion debe estar iniciada y finalizada para calcular el tiempo real", excepcionCapturada.getMessage());
     }
+
+    /**
+     * Prueba de seguridad: Verifica que se lance la excepción {@link AsistenteNoInvitadoException}
+     * al intentar registrar la asistencia de una persona que no figura en la lista de invitaciones.
+     */
     @Test
     public void testRegistrarAsistenteNoInvitadoLanzaExcepcion() {
         Departamento depto = new Departamento("TI");
@@ -152,6 +194,12 @@ public class ReunionTest {
 
         assertEquals("Error: No se puede registrar la asistencia de alguien que no fue invitado.", excepcionCapturada.getMessage());
     }
+
+    /**
+     * Prueba de seguridad: Verifica que se lance la excepción {@link AsistenciaDuplicadaException}
+     * para prevenir que un mismo invitado registre su asistencia más de una vez.
+     */
+
     @Test
     public void testAsistenciaDuplicadaLanzaExcepcion() {
         Departamento depto = new Departamento("TI");
@@ -172,6 +220,12 @@ public class ReunionTest {
 
         assertEquals("Error: El invitado ya ha registrado su asistencia previamente.", excepcionCapturada.getMessage());
     }
+
+    /**
+     * Prueba de seguridad (Matemática): Verifica que se lance la excepción {@link ReunionVaciaException}
+     * para evitar una división por cero al calcular porcentajes en reuniones sin convocados.
+     */
+
     @Test
     public void testObtenerPorcentajeSinInvitadosLanzaExcepcion() {
         Departamento depto = new Departamento("Marketing");
@@ -188,6 +242,10 @@ public class ReunionTest {
 
         assertEquals("Error: No se puede calcular el porcentaje de asistencia de una reunión sin invitados.", excepcionCapturada.getMessage());
     }
+    /**
+     * Prueba de seguridad (Lógica de negocio): Verifica que se lance la excepción
+     * {@link TiempoInvalidoException} al intentar agendar una reunión con duración igual o menor a cero.
+     */
     @Test
     public void testCrearReunionConDuracionInvalidaLanzaExcepcion() {
         Departamento depto = new Departamento("Ventas");
@@ -203,6 +261,11 @@ public class ReunionTest {
 
         assertEquals("Error: La duración prevista de la reunion debe ser mayor a cero.", excepcionCapturada.getMessage());
     }
+    /**
+     * Prueba de seguridad (Integridad de datos): Verifica que se lance la excepción
+     * {@link DatosIncompletosException} cuando el constructor recibe parámetros nulos
+     * que son vitales para la existencia de la reunión.
+     */
     @Test
     public void testCrearReunionConDatosFaltantesLanzaExcepcion() {
 
