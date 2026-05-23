@@ -21,7 +21,7 @@ public class PGenericoTest {
 
         String resultadoToString = invitadoExterno.toString();
 
-        String resultadoEsperado = "Nombre completo: Laura Vidal\nCorreo: laura.vidal@correo.cl";
+        String resultadoEsperado = "Nombre: Laura Vidal | Correo: laura.vidal@correo.cl";
 
         assertEquals(resultadoEsperado, resultadoToString,
                 "El método toString de PGenerico no devuelve el resultado esperado");

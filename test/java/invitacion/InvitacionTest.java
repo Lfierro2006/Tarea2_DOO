@@ -44,7 +44,7 @@ public class InvitacionTest {
 
         String resultadoToString = invitacion.toString();
 
-        String resultadoEsperado = "Invitación a: Nombre completo: Sofia Rojas\nCorreo: sofia@correo.cl | Hora: 2026-05-22T16:30:00Z";
+        String resultadoEsperado = "Nombre: Sofia Rojas | Correo: sofia@correo.cl | Hora: 2026-05-22T16:30:00Z\n";
 
         assertEquals(resultadoEsperado, resultadoToString,
                 "Metodo toString de Invitacion no devuelve el resultado esperado");

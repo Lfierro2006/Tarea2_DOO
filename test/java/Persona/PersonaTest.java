@@ -48,7 +48,7 @@ public class PersonaTest {
 
         String resultadoToString = persona.toString();
 
-        String resultadoEsperado = "Nombre completo: Ana Gomez\nCorreo: ana@empresa.com";
+        String resultadoEsperado = "Nombre: Ana Gomez | Correo: ana@empresa.com";
 
         assertEquals(resultadoEsperado, resultadoToString,
                 "metodo toString no devuelve el resultado esperado");

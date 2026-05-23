@@ -29,7 +29,7 @@ public class RetrasoTest {
 
         String resultadoToString = retraso.toString();
 
-        String resultadoEsperado = "Nombre completo: Javier Vidal\nCorreo: javier.vidal@correo.cl asistió pero llegó con retraso a las 2026-05-21T10:15:30Z";
+        String resultadoEsperado = "Nombre: Javier Vidal | Correo: javier.vidal@correo.cl asistió pero llegó con retraso a las 2026-05-21T10:15:30Z\n";
 
         assertEquals(resultadoEsperado, resultadoToString,
                 "El metodo toString de Retraso no devuelve el resultado esperado.");
