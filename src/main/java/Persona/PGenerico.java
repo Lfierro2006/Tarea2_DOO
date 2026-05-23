@@ -20,6 +20,6 @@ public class PGenerico extends Persona{
      */
     @Override
     public String toString(){
-        return "Nombre completo: "+this.getNombreCompleto()+ "\n" + "Correo: "+this.getCorreo();
+        return "Nombre: "+this.getNombreCompleto() + " | Correo: "+this.getCorreo();
     }
 }

@@ -30,17 +30,17 @@ public class Informe {
         try {
             PrintWriter informe=new PrintWriter(nombreInforme);
             informe.println("========================================INFORME REUNION========================================");
-            informe.println("Se organizó una reunion del tipo "+reunion.getTipo()+" el dia "+reunion.getFecha()+"a las"+reunion.getHoraPrevista());
-            informe.println("-Organizada por: \n"+reunion.getOrganizador());
-            informe.println("-Se inició a las "+reunion.getHoraInicio()+" y termino a las "+reunion.getHoraFinal()+" durando "+reunion.calcularTiempoReal());
+            informe.println("Se organizó una reunion del tipo "+reunion.getTipo()+" el dia "+reunion.getFecha()+" a las "+reunion.getHoraPrevista());
+            informe.println("-Organizada por: "+reunion.getOrganizador());
+            informe.println("-Se inició a las "+reunion.getHoraInicio()+" y termino a las "+reunion.getHoraFinal()+" durando "+reunion.calcularTiempoReal()+" horas");
             if(reunion.getClass()== ReunionPresencial.class){
-                informe.println("-Se hizo en la sala\n "+((ReunionPresencial)reunion).getSala());
+                informe.println("-Se hizo en la sala "+((ReunionPresencial)reunion).getSala());
             }else{
                 informe.println("-Se hizo en el enlace "+((ReunionVirtual)reunion).getLink());
             }
             informe.println("-Se invitó a:\n "+reunion.getInvitaciones());
-            informe.println("-Asistieron "+reunion.obtenerTotalAsistencia()+"("+reunion.obtenerPorcentajeAsistencia()+")"+":\n "+reunion.obtenerAsistencias());
-            informe.println("-Falataron:\n "+reunion.obtenerAusencias());
+            informe.println("-Asistieron "+reunion.obtenerTotalAsistencia()+"("+reunion.obtenerPorcentajeAsistencia()+"%)"+":\n "+reunion.obtenerAsistencias());
+            informe.println("-Faltaron:\n "+reunion.obtenerAusencias());
             informe.println("-Notas hechas en la reunion:\n "+reunion.getNotas());
             informe.close();
         } catch (FileNotFoundException e) {

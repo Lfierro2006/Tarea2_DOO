@@ -79,6 +79,6 @@ public abstract class Persona implements Invitable{
      */
     @Override
     public String toString(){
-        return "Nombre completo: "+this.getNombreCompleto()+"\n" + "Correo: "+this.getCorreo();
+        return "Nombre: "+this.getNombreCompleto() + " | Correo: "+this.getCorreo();
     }
 }

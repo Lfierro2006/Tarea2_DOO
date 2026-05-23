@@ -42,6 +42,6 @@ public class Asistencia {
      */
     @Override
     public String toString(){
-        return invitado.toString()+" ha asistido y llegó a las "+this.getHoraLlegada();
+        return invitado.toString()+" ha asistido y llegó a las "+this.getHoraLlegada()+"\n";
     }
 }

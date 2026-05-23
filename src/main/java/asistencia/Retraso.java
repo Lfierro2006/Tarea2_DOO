@@ -23,6 +23,6 @@ public class Retraso extends Asistencia {
      */
     @Override
     public String toString(){
-        return this.getInvitado().toString()+" asistió pero llegó con retraso a las "+this.getHoraLlegada();
+        return this.getInvitado().toString()+" asistió pero llegó con retraso a las "+this.getHoraLlegada()+"\n";
     }
 }

@@ -39,6 +39,6 @@ public class Nota{
      */
     @Override
     public String toString(){
-        return "["+this.getHora()+"] "+ this.getNota();
+        return "["+this.getHora()+"] "+ this.getNota()+"\n";
     }
 }

@@ -47,6 +47,6 @@ public class Invitacion{
      */
     @Override
     public String toString(){
-        return "Invitación a: " + invitado.toString() + " | Hora: " + hora;
+        return invitado.toString() + " | Hora: " + hora+"\n";
     }
 }
