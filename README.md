@@ -7,7 +7,6 @@ Integrantes:
   Cambios al Diagrama UML:
   
   -empleado ahora es una clase hijo de una clase padre abstracta llamada Persona para incluir el caso del Invitado externo a la empresa, salvo el id ahora todos los metodos y variables de empleado pertenecen a Persona
-  
   -los empleados ahora tienen una variable que indica su Departamento
   
   -Asistencia hace referencia a invitable en vez de empleado porque se agregó la clase PGenerica (el invitado externo)
