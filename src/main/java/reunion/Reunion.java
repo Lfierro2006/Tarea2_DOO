@@ -205,6 +205,9 @@ public abstract class Reunion {
         if (this.horaInicio == null) {
             throw new ReunionEstadoException("Error: No se puede finalizar una reunion que no ha sido iniciada");
         }
+        if (this.horaFinal != null) {
+            throw new ReunionEstadoException("Error: La reunión ya ha sido finalizada previamente.");
+        }
         this.horaFinal = Instant.now();
     }
     /**
