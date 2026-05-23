@@ -24,7 +24,7 @@ public class EmpleadoTest {
 
         String resultadoToString = empleado.toString();
 
-        String resultadoEsperado = "Nombre completo: Carlos Soto\n Id:20154321\n Correo: csoto@udec.cl";
+        String resultadoEsperado = "Nombre: Carlos Soto | Id:20154321 | Correo: csoto@udec.cl";
 
         assertEquals(resultadoEsperado, resultadoToString,
                 "El metodo toString de Empleado no devuelve el resultado esperado");
