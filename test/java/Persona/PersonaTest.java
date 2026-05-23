@@ -2,14 +2,6 @@ package Persona;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-
-/**
- * Clase de pruebas unitarias para la clase abstracta {@link Persona}.
- * Dado que Persona es abstracta y no puede ser instanciada directamente,
- * se utiliza una clase interna concreta temporal ({@code PersonaPrueba})
- * para evaluar el comportamiento de sus métodos heredados.
- */
-
 public class PersonaTest {
 
     /**
