@@ -13,8 +13,19 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Clase de pruebas unitarias para la clase {@link ReunionVirtual}.
+ * Se encarga de verificar la asignacion de los atributos exclusivos
+ * de una reunión virtual y su representación en texto.
+ */
 public class ReunionVirtualTest {
 
+    /**
+     * Prueba que verifica la inicialización de una reunión virtual.
+     * Comprueba que el atributo específico de este tipo de reunión (el enlace)
+     * se asigne correctamente a través del constructor y pueda ser recuperado
+     * intacto mediante el metodo {@code getLink()}.
+     */
     @Test
     public void testAsignacionAtributos() {
         Departamento depto = new Departamento("Desarrollo");
@@ -29,6 +40,12 @@ public class ReunionVirtualTest {
         assertEquals(enlace, reunion.getLink(), "El enlace no coincide con el entregado en el constructor.");
     }
 
+    /**
+     * Prueba que verifica el formato de salida del método {@code toString()}.
+     * Asegura que la cadena generada contenga de forma estructurada toda la
+     * información base de la reunión, concatenando al final el dato específico
+     * de la URL o enlace donde se llevará a cabo la videollamada.
+     */
     @Test
     public void testToStringFormatoCorrecto() {
         Departamento depto = new Departamento("Finanzas");

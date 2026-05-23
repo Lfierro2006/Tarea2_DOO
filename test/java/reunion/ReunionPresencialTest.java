@@ -13,8 +13,20 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Clase de pruebas unitarias para la clase {@link ReunionPresencial}.
+ * Se encarga de verificar la asignación de los atributos exclusivos
+ * de una reunión presencial y su representación en texto.
+ */
+
 public class ReunionPresencialTest {
 
+    /**
+     * Prueba que verifica la inicialización de una reunión presencial.
+     * Comprueba que el atributo específico de este tipo de reunión (la sala)
+     * se asigne correctamente a través del constructor y pueda ser recuperado
+     * mediante el metodo {@code getSala()}.
+     */
     @Test
     public void testAsignacionAtributos() {
         Departamento depto = new Departamento("Operaciones");
@@ -29,6 +41,12 @@ public class ReunionPresencialTest {
         assertEquals(sala, reunion.getSala(), "La sala no coincide con la entregada en el constructor.");
     }
 
+    /**
+     * Prueba que verifica el formato de salida del metodo {@code toString()}.
+     * Asegura que la cadena generada contenga de forma estructurada toda la
+     * información base de la reunión, concatenando al final el dato específico
+     * de la sala donde se realizará.
+     */
     @Test
     public void testToStringFormatoCorrecto() {
         Departamento depto = new Departamento("Ventas");

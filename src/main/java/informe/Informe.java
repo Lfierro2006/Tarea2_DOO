@@ -20,7 +20,7 @@ public class Informe {
      */
     public Informe(Reunion reunion){
         this.reunion=reunion;
-        this.nombreInforme="Reunion-"+reunion.getOrganizador().getNombreCompleto().replace(" ","_")+"-"+reunion.getFecha().toString().replace(" ","_")+".txt";
+        this.nombreInforme="Reunion-"+reunion.getOrganizador().getNombreCompleto().replace(" ","_")+"-"+reunion.getFecha().toString().replace(" ","_").replace(":","-")+".txt";
     }
     /**
      * Escribe y guarda todos los datos de la reunión en un archivo de texto (.txt).

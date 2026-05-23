@@ -5,7 +5,18 @@ import org.junit.jupiter.api.Test;
 import java.time.Instant;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * clase de pruebas unitarias para la clase {@link Retraso}.
+ * verifica que el registro de un retraso
+ * genere correctamente su representación en formato de texto.
+ */
 public class RetrasoTest {
+
+    /**
+     * Prueba que verifica la salida del metodo {@code toString()}.
+     * Asegura que la cadena de texto tenga la informacion del asistente
+     * que llego tarde, y a que hora llego a la reunion
+     */
 
     @Test
     public void testToStringFormatoCorrecto() {
