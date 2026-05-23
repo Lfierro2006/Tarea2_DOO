@@ -134,6 +134,27 @@ public class ReunionTest {
 
     /**
      * Prueba de seguridad: Verifica que se lance la excepcion {@link ReunionEstadoException}
+     * Intentar iniciar una Reunion cuando la anterior no ha finalizado
+     */
+    @Test
+    public void testIniciarReunionDosVeces(){
+        Departamento depto = new Departamento("Gerencia");
+        Empleado organizador = new Empleado("Admin", "Jefe", "admin@udec.cl", "111", depto);
+        Reunion reunion = new ReunionPrueba(organizador, new Date(), Instant.now(),
+                Duration.ofHours(1), Reunion.tipoReunion.OTRO, new ArrayList<>());
+
+        reunion.iniciar();
+        Exception excepcionCapturada = assertThrows(ReunionEstadoException.class, () -> {
+            reunion.iniciar();
+        });
+
+        assertEquals("Error: La Reunion anterior debe haber finalizado antes de iniciar otra nueva", excepcionCapturada.getMessage());
+    }
+}
+
+
+    /**
+     * Prueba de seguridad: Verifica que se lance la excepcion {@link ReunionEstadoException}
      * al intentar finalizar una reunión que no ha sido iniciada previamente.
      */
     @Test
@@ -149,6 +170,26 @@ public class ReunionTest {
 
         assertEquals("Error: No se puede finalizar una reunion que no ha sido iniciada", excepcionCapturada.getMessage());
     }
+
+    /**
+    * Prueba de seguridad: Verifica que se lance la excepcion {@link ReunionEstadoException}
+    * al intentar finalizar una reunión por segunda vez a pesar de haber ya finalizado
+    */
+    @Test
+    public void testFinDosVeces(){
+        Departamento depto = new Departamento("Gerencia");
+        Empleado organizador = new Empleado("Admin", "Jefe", "admin@udec.cl", "111", depto);
+        Reunion reunion = new ReunionPrueba(organizador, new Date(), Instant.now(),
+                Duration.ofHours(1), Reunion.tipoReunion.OTRO, new ArrayList<>());
+        reunion.iniciar();
+        reunion.finalizar();
+        Exception excepcionCapturada = assertThrows(ReunionEstadoException.class, () -> {
+            reunion.finalizar();
+        });
+
+        assertEquals("Error: La ultima reunion ya fue finalizada y no hay otra en progreso", excepcionCapturada.getMessage());
+    }
+
 
     /**
      * Prueba de seguridad: Verifica que se lance la excepción {@link ReunionEstadoException}
@@ -276,4 +317,3 @@ public class ReunionTest {
 
         assertEquals("Error: Faltan datos obligatorios para agendar la reunión (se detectó un valor nulo).", excepcionCapturada.getMessage());
     }
-}
