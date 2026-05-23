@@ -191,6 +191,9 @@ public abstract class Reunion {
      * Marca el inicio de la reunión registrando la hora actual.
      */
     public void iniciar(){
+        if (this.horaInicio != null) {
+            throw new ReunionEstadoException("Error: No se puede iniciar una reunion que ya ha sido iniciada");
+        }
         this.horaInicio=Instant.now();
     }
     /**
