@@ -10,6 +10,8 @@ Integrantes:
   
   -los empleados ahora tienen una variable que indica su Departamento
   
+  -Se agregó la clase PGenerico que hereda de Persona para representar invitados externos a la empresa, de esta forma pueden ser invitados y registrar asistencia igual que un Empleado sin necesidad de tener un id o departamento
+  
   -Asistencia hace referencia a invitable en vez de empleado porque se agregó la clase PGenerica (el invitado externo)
   
   -En Asistencia se agregó el atributo Instant horaLlegada para registrar la hora a la que llegó cada persona
